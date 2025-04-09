@@ -2,12 +2,17 @@
 
 use Illuminate\Http\Request;
 
-// Bootstrap the application and get the router
-$router = require __DIR__ . '/../app/bootstrap/kernel.php';
+// Bootstrap the application and get the router and handler
+$bootstrap = require __DIR__ . '/../app/bootstrap/kernel.php';
+$router = $bootstrap['router'];
+$handler = $bootstrap['handler'];
 
 // Dispatch the request
 $request = Request::capture();
-$response = $router->dispatch($request);
-
-// Send the response
-$response->send();
+try {
+    $response = $router->dispatch($request);
+    $response->send();
+} catch (Throwable $e) {
+    $response = $handler->render($request, $e);
+    $response->send();
+}

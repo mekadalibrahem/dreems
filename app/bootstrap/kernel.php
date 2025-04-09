@@ -10,6 +10,7 @@ use Illuminate\Routing\CallableDispatcher;
 use Illuminate\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Facade;
+use App\Exceptions\Handler;
 
 class Kernel
 {
@@ -40,6 +41,11 @@ class Kernel
             return new CallableDispatcher($container);
         });
 
+        // Bind the exception handler to the container
+        $container->singleton('exception.handler', function () {
+            return new Handler();
+        });
+
         // Bind the router to the container
         $container->instance('router', $router);
 
@@ -49,7 +55,10 @@ class Kernel
         // Load routes
         require __DIR__ . '/../../routes/web.php';
 
-        return $router;
+        return [
+            'router' => $router,
+            'handler' => $container->make('exception.handler'),
+        ];
     }
 }
 
