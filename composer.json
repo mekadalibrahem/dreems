@@ -22,5 +22,13 @@
         "illuminate/routing": "^12.8",
         "illuminate/database": "^12.8",
         "illuminate/events": "^12.8"
-    }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "echo 'Project installed successfully!'"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
