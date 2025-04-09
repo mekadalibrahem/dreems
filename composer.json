@@ -1,0 +1,18 @@
+{
+    "name": "mekad/php",
+    "description": "Defaine php application structure and some some packages and fucntions for work",
+    "type": "template",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mekad\\Php\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mekadalibrahem",
+            "email": "mekadalibrahem123@gmail.com"
+        }
+    ],
+    "require": {}
+}
