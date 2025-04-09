@@ -1,7 +1,7 @@
 {
     "name": "mekad/php",
     "description": "Defaine php application structure and some some packages and fucntions for work",
-    "type": "template",
+    "type": "project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
