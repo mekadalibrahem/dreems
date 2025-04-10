@@ -23,7 +23,12 @@ function assert_recources($file)
         return null;
     }
 }
-
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 function config($key, $default = null)
 {
     return Helper::config($key, $default);

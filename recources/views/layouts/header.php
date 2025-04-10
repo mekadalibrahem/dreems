@@ -32,7 +32,7 @@ use App\Core\Helper\Helper;
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
+        <div class="container containernav ">
             <a class="navbar-brand" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>index.php">
                 <i class="fas fa-star-half-alt me-2"></i>
                 <span class="fw-bold"><?php Helper::config('app.app_name'); ?></span>
@@ -45,11 +45,9 @@ use App\Core\Helper\Helper;
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>index.php">الرئيسية</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>/">الرئيسية</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>submit_dream.php">شارك حلمك</a>
-                    </li>
+                    
                     <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') === false) ? 'admin/' : ''; ?>index.php">لوحة التحكم</a>
@@ -60,7 +58,7 @@ use App\Core\Helper\Helper;
                     <?php endif; ?>
                 </ul>
                 <div class="d-flex">
-                    <a href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>submit_dream.php" class="btn btn-success ms-2">
+                    <a href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>submit_dream" class="btn btn-success ms-2">
                         <i class="fas fa-plus-circle me-1"></i> أرسل حلمك
                     </a>
                 </div>

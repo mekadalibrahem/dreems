@@ -11,7 +11,6 @@
     --dark-background: #1a1a24; /* Even darker background */
 }
 
-/* General Styles */
 body {
     font-family: 'Cairo', sans-serif;
     background-color: var(--dark-background);
@@ -467,4 +466,11 @@ body {
 
 .invalid-feedback {
     color: #ff6b7a;
+}
+.containernav {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
