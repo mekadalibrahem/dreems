@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper;
+namespace App\Core\Helper;
 
 class Helper
 {
@@ -92,7 +92,7 @@ class Helper
 
     public static function root_path(): string
     {
-        return   __DIR__ . "/../../";
+        return   __DIR__ . "/../../../";
     }
 
 

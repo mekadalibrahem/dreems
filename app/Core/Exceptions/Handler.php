@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Core\Exceptions;
 
-use App\Helper\Helper;
+use App\Core\Helper\Helper;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

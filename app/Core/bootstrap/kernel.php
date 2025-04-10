@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 require_once __DIR__ . "/../Helper/functions.php";
 
 use Dotenv\Dotenv;
@@ -11,7 +11,8 @@ use Illuminate\Routing\CallableDispatcher;
 use Illuminate\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Facade;
-use App\Exceptions\Handler;
+use App\Core\Exceptions\Handler;
+use App\Core\Helper\Helper;
 
 class Kernel
 {
@@ -23,13 +24,13 @@ class Kernel
             return self::$instance;
         }
 
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv = Dotenv::createImmutable(Helper::root_path());
         $dotenv->load();
 
         $container = new Container;
 
         $capsule = new Capsule;
-        $capsule->addConnection(require __DIR__ . '/../../config/database.php');
+        $capsule->addConnection(require Helper::root_path() . 'config/database.php');
         $capsule->setEventDispatcher(new Dispatcher($container));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
@@ -48,7 +49,7 @@ class Kernel
         $container->instance('router', $router);
         Facade::setFacadeApplication($container);
 
-        $routesFile = __DIR__ . '/../../routes/web.php';
+        $routesFile = Helper::root_path() .'routes/web.php';
         if (file_exists($routesFile)) {
             require $routesFile;
         } else {

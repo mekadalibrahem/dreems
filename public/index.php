@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 // Bootstrap the application and get the router and handler
-$bootstrap = require __DIR__ . '/../app/bootstrap/kernel.php';
+$bootstrap = require __DIR__ . '/../app/Core/bootstrap/kernel.php';
 $router = $bootstrap['router'];
 $handler = $bootstrap['handler'];
 

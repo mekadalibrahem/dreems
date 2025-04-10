@@ -3,7 +3,7 @@
 //  public function withoit class 
 
 use App\Core\Views\View;
-use App\Helper\Helper;
+use App\Core\Helper\Helper;
 use Symfony\Component\HttpFoundation\Response;
 
 
