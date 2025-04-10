@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Symfony\Component\HttpFoundation\Request;
+use App\Helper\Helper;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler
@@ -15,10 +17,19 @@ class Handler
      * @param Throwable $exception
      * @return Response
      */
-    public function render(Request $request, Throwable $exception): Response
+    public function render(Request $request, Throwable $exception)
     {
+        // Handle 404 specifically
+        if ($exception instanceof NotFoundHttpException) {
+            return new Response(
+                file_get_contents(Helper::recources_path() . '/views/errors/404.php'),
+                404,
+                ['Content-Type' => 'text/html']
+            );
+        }
+
         // Check if the request expects JSON (e.g., for APIs)
-        if ($request->isXmlHttpRequest() || $request->headers->get('Accept') === 'application/json') {
+        if ($request->expectsJson()) {
             return new Response(
                 json_encode(['error' => $exception->getMessage(), 'code' => $exception->getCode()]),
                 500,

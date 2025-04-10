@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . "/../Helper/functions.php";
 
 use Dotenv\Dotenv;
 use Illuminate\Container\Container;
@@ -14,51 +15,82 @@ use App\Exceptions\Handler;
 
 class Kernel
 {
+    private static $instance = null;
+
     public static function bootstrap()
     {
-        // Load environment variables
+        if (self::$instance !== null) {
+            return self::$instance;
+        }
+
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
         $dotenv->load();
 
-        // Set up the container
         $container = new Container;
 
-        // Set up database connection (Eloquent)
         $capsule = new Capsule;
         $capsule->addConnection(require __DIR__ . '/../../config/database.php');
         $capsule->setEventDispatcher(new Dispatcher($container));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
 
-        // Set up event dispatcher
         $events = new Dispatcher($container);
-
-        // Set up the router
         $router = new Router($events, $container);
 
-        // Bind the CallableDispatcher to the container
         $container->singleton(CallableDispatcherContract::class, function ($container) {
             return new CallableDispatcher($container);
         });
 
-        // Bind the exception handler to the container
         $container->singleton('exception.handler', function () {
             return new Handler();
         });
 
-        // Bind the router to the container
         $container->instance('router', $router);
-
-        // Set the container as the facade root
         Facade::setFacadeApplication($container);
 
-        // Load routes
-        require __DIR__ . '/../../routes/web.php';
+        $routesFile = __DIR__ . '/../../routes/web.php';
+        if (file_exists($routesFile)) {
+            require $routesFile;
+        } else {
+            echo "Routes file not found: $routesFile\n";
+        }
 
-        return [
+        self::$instance = [
             'router' => $router,
             'handler' => $container->make('exception.handler'),
         ];
+
+        return self::$instance;
+    }
+
+    public static function isRouteRegistered(): bool
+    {
+        $kernel = self::bootstrap();
+        $router = $kernel['router'];
+
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+        $uri = trim($uri, '/');
+        if ($uri === '') {
+            $uri = '/';
+        }
+
+        $routes = $router->getRoutes();
+
+        if ($routes->count() === 0) {
+            return false;
+        }
+
+        foreach ($routes as $route) {
+            if (in_array($method, $route->methods()) && $route->matches(
+                Illuminate\Http\Request::create($uri, $method)
+            )) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
