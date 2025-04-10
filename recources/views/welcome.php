@@ -1,6 +1,6 @@
 <?php
 
-use App\Helper\Helper;
+use App\Core\Helper\Helper;
 
 include_once(Helper::views_path() . '/layouts/header.php');
 ?>

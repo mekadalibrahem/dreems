@@ -9,7 +9,7 @@
 // require_once $basePath . 'functions.php';
 // 
 
-use App\Helper\Helper;
+use App\Core\Helper\Helper;
 
 ?>
 <!DOCTYPE html>

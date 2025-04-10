@@ -2,7 +2,7 @@
 
 namespace App\Core\Views;
 
-use App\Helper\Helper;
+use App\Core\Helper\Helper;
 use Exception;
 
 
