@@ -21,20 +21,20 @@ use App\Core\Helper\Helper;
     <?php //echo SITE_DESC; ?>
 </title>
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/app.css" />
-    <script src="js/app.js"></script>
+   
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container containernav ">
             <a class="navbar-brand" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>index.php">
-                <i class="fas fa-star-half-alt me-2"></i>
+                <i class="fa fa-star-half-alt me-2"></i>
                 <span class="fw-bold"><?php Helper::config('app.app_name'); ?></span>
             </a>
             
