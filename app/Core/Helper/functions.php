@@ -35,7 +35,7 @@ function view($view){
 
 function abort($code = 404 ){
     return new Response(
-        file_get_contents(Helper::recources_path() .  '/views/errors/404.php'), 
+        file_get_contents(Helper::recources_path() .  'views/errors/404.php'), 
         404,
         ['Content-Type' => 'text/html']
     );
