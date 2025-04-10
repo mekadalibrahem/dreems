@@ -2,15 +2,17 @@
 
 <?php
 //TODO: IMPORT DATABASE
-//$database = new Database();
-//$fulfilledDreams = $database->getFulfilledDreams(20);
+
+use App\Models\Dream;
+
+$fulfilledDreams = Dream::all();
+// dd($fulfilledDreams);
 use App\Core\Helper\Helper;
 ?>
     </div><!-- End main container -->
 
     Fulfilled Dreams Ticker - New Simpler Version
-    <?php 
-    // if (count($fulfilledDreams) > 0): ?>
+    <?php if (count($fulfilledDreams) > 0): ?>
     <div id="news-ticker" class="ticker-wrap">
         <div class="ticker-heading">
             <i class="fas fa-check-circle me-1"></i> أحلام تحققت
@@ -19,14 +21,14 @@ use App\Core\Helper\Helper;
             <div class="ticker-track">
                 <?php foreach ($fulfilledDreams as $dream): ?>
                 <div class="ticker-item">
-                    <span class="ticker-name"><?php echo htmlspecialchars($dream['full_name']); ?></span>
-                    <span class="ticker-amount"><?php echo formatAmount($dream['amount']); ?> ل.س</span>
+                    <span class="ticker-name"><?php ec($dream->full_name); ?></span>
+                    <span class="ticker-amount"><?php ec($dream->amount); ?> ل.س</span>
                 </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
-    
+    <?php endif ?>
     
     <!-- Footer -->
     <footer class="footer py-4">
@@ -34,7 +36,7 @@ use App\Core\Helper\Helper;
             <div class="row">
                 <div class="col-12 text-center">
                     <span class="copyright">
-                        جميع الحقوق محفوظة &copy; <?php echo ' | ' . config('app.app_name') . ' ' . date('Y')  ;  ?>
+                        جميع الحقوق محفوظة &copy; <?php ec(' | ' . config('app.app_name') . ' ' . date('Y') ) ;  ?>
                     </span>
                 </div>
             </div>
@@ -48,6 +50,6 @@ use App\Core\Helper\Helper;
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <!-- Custom JS -->
-    <script src="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>assets/js/script.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

@@ -45,3 +45,7 @@ function abort($code = 404 ){
         ['Content-Type' => 'text/html']
     );
 }
+
+function ec($value){
+    echo htmlspecialchars($value);
+}
