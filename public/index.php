@@ -13,6 +13,7 @@ $handler = $bootstrap['handler'];
 $request = Request::capture();
 
 try {
+    flashing();
 
     if (Kernel::isRouteRegistered()) {
         $response = $router->dispatch($request);

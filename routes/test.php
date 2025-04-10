@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Helper\Session;
 use App\Models\AdminSetting;
 use Illuminate\Support\Facades\Route;
 use App\Models\Dream;
@@ -90,5 +91,34 @@ Route::group(
                 });
             });
         });
+
+        Route::group(
+            [
+                'prefix' => 'session',
+                'as' => 'session.'
+            ],
+            function () {
+                Route::get('/', function () {
+                    Session::put("puting", "yes");
+                    Session::flash('flashing',  "flash data");
+                    Session::error('erroring', 'error data');
+                    Session::old('olding', 'old data');
+                    $s = Session::get(null);
+                    $flashing = flashing();
+                    $old = old('olding');
+                    Session::destroy();
+                    dd(
+                        $s,
+                        $flashing,
+                        errors(),
+                        has_error('erroring'),
+                        has_error('erroringsssas'),
+                        error('erroring'),
+                        $old
+
+                    );
+                });
+            }
+        );
     }
 );
