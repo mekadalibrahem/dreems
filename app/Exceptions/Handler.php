@@ -21,11 +21,7 @@ class Handler
     {
         // Handle 404 specifically
         if ($exception instanceof NotFoundHttpException) {
-            return new Response(
-                file_get_contents(Helper::recources_path() . '/views/errors/404.php'),
-                404,
-                ['Content-Type' => 'text/html']
-            );
+            return  abort(404);
         }
 
         // Check if the request expects JSON (e.g., for APIs)

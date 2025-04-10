@@ -19,11 +19,7 @@ try {
         $response->send();
     } else {
         // Create a 404 response manually
-        $response = new Response(
-            file_get_contents(Helper::recources_path() .  '/views/errors/404.php'), // Load a static HTML file
-            404,
-            ['Content-Type' => 'text/html']
-        );
+        $response = abort(404);
         $response->send();
     }
 } catch (Throwable $e) {

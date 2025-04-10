@@ -4,7 +4,7 @@
 
 use App\Core\Views\View;
 use App\Helper\Helper;
-
+use Symfony\Component\HttpFoundation\Response;
 
 
 // assert js or css files 
@@ -31,4 +31,12 @@ function config($key, $default = null)
 
 function view($view){
     return View::view($view);
+}
+
+function abort($code = 404 ){
+    return new Response(
+        file_get_contents(Helper::recources_path() .  '/views/errors/404.php'), 
+        404,
+        ['Content-Type' => 'text/html']
+    );
 }
