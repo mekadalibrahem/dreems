@@ -11,8 +11,8 @@ class Argon2HashingStrategy implements HashingStrategy
     public function __construct(array $options = [])
     {
         $this->options = array_merge([
-            'memory_cost' => 65536,
-            'time_cost' => 4,
+            'memory' => 1024,
+            'time' => 2,
             'threads' => 2,
         ], $options);
     }
