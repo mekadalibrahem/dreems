@@ -9,78 +9,10 @@
 function isAdminLoggedIn() {
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 }
-if (!isAdminLoggedIn()) {
-    // Check for login error messages
-    $loginError = $_SESSION['login_error'] ?? '';
-    unset($_SESSION['login_error']);
-    
-    // Display login form
-    ?>
-    <!DOCTYPE html>
-    <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>تسجيل الدخول - لوحة التحكم <?php echo  config("APP.APP_NAME"); ?></title>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/app.css">
-    </head>
-    <body>
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="login-form">
-                        <div class="card-header text-center">
-                            تسجيل الدخول للوحة التحكم
-                        </div>
-                        <div class="card-body">
-                            <?php if (!empty($loginError)): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $loginError; ?>
-                            </div>
-                            <?php endif; ?>
-                            
-                            <form id="loginForm" method="post" action="../process/login.php">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">اسم المستخدم</label>
-                                    <input type="text" class="form-control" id="username" name="username" required>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">كلمة المرور</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-sign-in-alt me-1"></i> تسجيل الدخول
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="text-center mt-3">
-                            <a href="/" class="text-decoration-none">
-                                <i class="fas fa-arrow-right me-1"></i> العودة إلى الموقع الرئيسي
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="/js/app.js"></script>
-    </body>
-    </html>
-    <?php
-    exit;
-}
+
+
+
+
 
 // User is logged in, display admin dashboard
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Controllers\AdminController;
+use App\Controllers\Auth\LoginController;
 use App\Models\Dream;
 use Illuminate\Support\Facades\Route;
 use App\Controllers\DreamController;
@@ -27,9 +29,8 @@ Route::group(
 
 
 
-
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', function () {
-        view('admin/index');
-    });
+    Route::get('/login' , [LoginController::class , 'create']);
+    Route::post('/login' , [LoginController::class , 'store']);
+    Route::get('/dashboard' , [AdminController::class , 'create']);
 });
