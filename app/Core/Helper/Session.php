@@ -14,6 +14,9 @@ class Session
     private static function ensureStarted(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
+            ini_set('session.cookie_secure', config('session.cookie_secure' , 1)); 
+            ini_set('session.cookie_httponly', config('session.cookie_httponly',1));
+            ini_set('session.use_strict_mode', config('session.use_strict_mode',1));
             session_start();
         }
     }
