@@ -22,7 +22,7 @@ trait FileUploadTrait
     {
         try {
             if ($destination === null) {
-                $destination = Helper::root_path() . 'storage/uploads/';
+                $destination = Helper::root_path() . 'public/storage/uploads/';
             }
 
             // Check if file was uploaded
