@@ -74,13 +74,26 @@ function has_error($key)
     return (bool) error($key);
 }
 
-function old($key, $default=''){
+function old($key, $default = '')
+{
     return Session::getOld($key, $default);
-} 
-function flashing(){
-    $GLOBALS['_flash'] = Session::getFlash();
-    Session::unflash();
 }
-function get_flash(){
-    
+function flashing()
+{
+    $GLOBALS['_flash'] = Session::getFlash() ?: [];
+}
+function flash_session($key)
+{
+    return $GLOBALS['_flash'][$key] ?? null;
+}
+
+function flash_has($key)
+{
+    return !empty($GLOBALS['_flash'][$key]);
+}
+
+function redirect($path)
+{
+    header('Location: ' . $path);
+    exit;
 }
