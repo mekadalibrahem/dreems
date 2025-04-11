@@ -10,6 +10,7 @@
 // 
 
 use App\Core\Helper\Helper;
+use App\Core\Helper\Session;
 
 ?>
 <!DOCTYPE html>
@@ -26,14 +27,14 @@ use App\Core\Helper\Helper;
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="/css/app.css" />
    
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container containernav ">
-            <a class="navbar-brand" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>index.php">
+            <a class="navbar-brand" href="/">
                 <i class="fa fa-star-half-alt me-2"></i>
                 <span class="fw-bold"><?php Helper::config('app.app_name'); ?></span>
             </a>
@@ -45,20 +46,21 @@ use App\Core\Helper\Helper;
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>/">الرئيسية</a>
+                        <a class="nav-link active" aria-current="page" href="/">الرئيسية</a>
                     </li>
                     
-                    <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
-                    <li class="nav-item">
+                    <?php if(Session::get('admin_login')): ?>
+                        <!-- TODO : implement admin panel -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') === false) ? 'admin/' : ''; ?>index.php">لوحة التحكم</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>process/login.php?logout=1">تسجيل الخروج</a>
-                    </li>
+                    </li> -->
                     <?php endif; ?>
                 </ul>
                 <div class="d-flex">
-                    <a href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>submit_dream" class="btn btn-success ms-2">
+                    <a href="/dream/create" class="btn btn-success ms-2">
                         <i class="fas fa-plus-circle me-1"></i> أرسل حلمك
                     </a>
                 </div>

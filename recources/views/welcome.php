@@ -56,7 +56,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 DreamsUP - حقق أحلامك
             </h1>
             <p>منصة لمشاركة وتحقيق الأحلام، يمكنك مشاركة حلمك وقد يتم اختياره للتحقيق!</p>
-            <a href="submit_dream" class="btn btn-light">
+            <a href="dream/create" class="btn btn-light">
                 <i class="fas fa-plus-circle me-1"></i> شارك حلمك الآن
             </a>
         </div>
