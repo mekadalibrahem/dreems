@@ -7,7 +7,7 @@ use App\Core\Helper\Session;
 use App\Core\Helper\Validator;
 use App\Models\Dream;
 use App\Traits\FileUploadTrait;
-use illuminate\Http\Request;
+
 
 class DreamController extends Controller
 {
@@ -17,16 +17,12 @@ class DreamController extends Controller
     {
         view('dream/create');
     }
-    public  function store(Request $request)
+    public  function store()
     {
 
         $requets_data = $_REQUEST;
-        // dd($_FILES['dreamImage']);
-        //    push in old data session 
-        foreach ($requets_data as $key => $value) {
-
-            Session::old($key, $value);
-        }
+        $this->saveOld($requets_data);
+       
         // validation step 
         $fullNameError =  Validator::validate('required', 'fullName', $requets_data['fullName']);
         $dreamDescriptionError =  Validator::validate('required', 'dreamDescription', $requets_data['dreamDescription']);
