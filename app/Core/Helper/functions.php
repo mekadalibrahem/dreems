@@ -97,3 +97,7 @@ function redirect($path)
     header('Location: ' . $path);
     exit;
 }
+function back()
+{
+    return  $_SERVER['HTTP_REFERER'] ?? '/';
+}
