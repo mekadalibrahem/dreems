@@ -136,7 +136,7 @@ Route::group(
                     Route::get('hashing' , function(){
                       
                         $h2 = HashingHash::hash('passwrd');
-                        dd($h1,$h2);
+                        dd($h2);
                     });
             });
 });
