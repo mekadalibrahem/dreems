@@ -135,7 +135,7 @@ Route::group(
                     
                     Route::get('hashing' , function(){
                       
-                        $h2 = HashingHash::hash('passwrd');
+                        $h2 = HashingHash::hash('password');
                         dd($h2);
                     });
             });

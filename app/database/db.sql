@@ -29,4 +29,5 @@ CREATE TABLE IF NOT EXISTS admin_settings (
     deleted_at TIMESTAMP  NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 -- add admins  with password is 'password'
-INSERT INTO `users` (`id`, `username`, `role`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'sadmin', 'super-admin', '$2y$12$FqwpuQ1utkP2GKed6iOemO/qebvwFP7WirHUlxisUdnF1kNAI294u', current_timestamp(), NULL, NULL), (NULL, 'admin', 'admin', '$2y$12$FqwpuQ1utkP2GKed6iOemO/qebvwFP7WirHUlxisUdnF1kNAI294u', current_timestamp(), NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `role`, `password`, `created_at`, `updated_at`, `deleted_at`) 
+VALUES (NULL, 'sadmin', 'super-admin', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', current_timestamp(), NULL, NULL), (NULL, 'admin', 'admin', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', current_timestamp(), NULL, NULL);
