@@ -18,10 +18,10 @@ class  View
             throw new Exception("ERROR VIEW {$view} NOT FOUND ");
         }
     }
-    protected function render()
+    protected function render($data = [])
     {
         try {
-
+            extract($data);
             include_once(Helper::views_path() . $this->view . '.php');
         } catch (\Throwable $th) {
             throw new Exception("ERROR including page {$this->view} NOT FOUND message : " . $th->getMessage());
@@ -31,7 +31,7 @@ class  View
     public static function view($view_name , $data = [])
     {
         try {
-            $view = new self($view_name , compact($data));
+            $view = new self($view_name ,$data);
             return $view->render();
         } catch (\Throwable $th) {
             throw new Exception("ERROR Creating VIEW {$view_name}  message : " . $th->getMessage());
