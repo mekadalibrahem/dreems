@@ -26,7 +26,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
             <?php else: ?>
                 <div class="table-responsive">
                     <!-- TODO fix table  -  rows colors  -->
-                    <table class="table table-striped admin-table">
+                    <table class="table admin-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
