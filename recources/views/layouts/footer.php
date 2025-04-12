@@ -9,7 +9,7 @@ $fulfilledDreams = Dream::all();
 // dd($fulfilledDreams);
 use App\Core\Helper\Helper;
 ?>
-    </div><!-- End main container -->
+  
 
     <!-- //TODO : FIX MOVING TICKER JS CODE IN METHOD (setupNewTicker) -->
     Fulfilled Dreams Ticker - New Simpler Version

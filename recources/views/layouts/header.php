@@ -68,4 +68,4 @@ use App\Core\Helper\Session;
         </div>
     </nav>
 
-    <div class="container mt-4 main-container">
+  
