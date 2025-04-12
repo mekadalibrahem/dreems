@@ -12,7 +12,6 @@ use App\Core\Helper\Helper;
   
 
     <!-- //TODO : FIX MOVING TICKER JS CODE IN METHOD (setupNewTicker) -->
-    Fulfilled Dreams Ticker - New Simpler Version
     <?php if (count($fulfilledDreams) > 0): ?>
     <div id="news-ticker" class="ticker-wrap">
         <div class="ticker-heading">

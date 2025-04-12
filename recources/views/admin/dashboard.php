@@ -33,36 +33,54 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 </div>
                 <div class="card-body">
                     <form id="randomCriteriaForm" method="post" action="/admin/fulfill_dream">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label for="minAmount" class="form-label">الحد الأدنى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control <?php echo has_error('minAmount') ? 'is-invalid' : ''; ?> " id="minAmount" name="minAmount" min="0" value="<?php ec(old('minAmount')); ?>">
-                                    <?php if (has_error('minAmount')): ?>
-                                        <div class="invalid-feedback"><?php ec(error('minAmount')); ?></div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label for="maxAmount" class="form-label">الحد الأقصى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control  <?php echo has_error('maxAmount') ? 'is-invalid' : ''; ?> " id="maxAmount" name="maxAmount" min="1" value="<?php ec(old('maxAmount')); ?>">
-                                    <?php if (has_error('maxAmount')): ?>
-                                        <div class="invalid-feedback"><?php ec(error('maxAmount')); ?></div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="col-md-2 d-flex align-items-end">
-                                <div class="mb-3 w-100 d-flex">
-                                    <button type="submit" name="select_random" class="btn btn-fulfill me-1">
-                                        <i class="fas fa-magic me-1"></i> اختيار عشوائي
-                                    </button>
-                                    <button type="submit" name="view_dreams" class="btn btn-secondary">
-                                        <i class="fas fa-list me-1"></i> عرض المطابق
-                                    </button>
+                        <div class="d-flex justify-content-center align-items-center ">
+                            <div class="row w-75">
+                                <div class="col-md-6 offset-md-3">
+                                    <div class="mb-4 text-center">
+                                        <h5 class="mb-4">تحديد حدود المبلغ</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="minAmount" class="form-label">الحد الأدنى (ل.س)</label>
+                                                <input type="number"
+                                                    class="form-control <?php echo has_error('minAmount') ? 'is-invalid' : ''; ?>"
+                                                    id="minAmount" name="minAmount" min="0"
+                                                    value="<?php ec(old('minAmount')); ?>">
+                                                <?php if (has_error('minAmount')): ?>
+                                                    <div class="invalid-feedback"><?php ec(error('minAmount')); ?></div>
+                                                <?php endif; ?>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="maxAmount" class="form-label">الحد الأقصى (ل.س)</label>
+                                                <input type="number"
+                                                    class="form-control <?php echo has_error('maxAmount') ? 'is-invalid' : ''; ?>"
+                                                    id="maxAmount" name="maxAmount" min="1"
+                                                    value="<?php ec(old('maxAmount')); ?>">
+                                                <?php if (has_error('maxAmount')): ?>
+                                                    <div class="invalid-feedback"><?php ec(error('maxAmount')); ?></div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                </div>
+                <div class="row">
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <div class="w-auto d-flex flex-column align-items-center">
+                            <div class="mb-4 w-auto d-flex gap-3">
+                                <button type="submit" name="select_random" class="btn btn-fulfill btn-lg">
+                                    <i class="fas fa-magic me-1"></i> اختيار عشوائي
+                                </button>
+                                <button type="submit" name="view_dreams" class="btn btn-secondary btn-lg">
+                                    <i class="fas fa-list me-1"></i> عرض المطابق
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     </form>
                 </div>
             </div>
@@ -79,7 +97,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 <p class="text-center">لا توجد أحلام للعرض.</p>
             <?php else: ?>
                 <div class="table-responsive">
-                    
+
                     <table class="table  admin-table">
                         <thead>
                             <tr>
@@ -94,7 +112,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                         <tbody>
                             <?php foreach ($dreams as $index => $dream): ?>
                                 <tr>
-                                    <td><?php echo  $index + 1; ?></td>
+                                    <td><?php echo $index + 1; ?></td>
                                     <td><?php ec($dream->full_name); ?></td>
                                     <td> <?php ec($dream->description); ?> </td>
                                     <td><?php ec($dream->amount); ?> ل.س</td>
@@ -108,10 +126,12 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                     <td>
                                         <?php if ($dream->status === 'pending'): ?>
                                             <div class="btn-group">
-                                                <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
+                                                <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>"
+                                                    class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
                                                     <i class="fas fa-magic"></i> تحقيق
                                                 </a>
-                                                <a href="delete_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-danger btn-admin delete-dream">
+                                                <a href="delete_dream.php?id=<?php echo $dream->id; ?>"
+                                                    class="btn btn-sm btn-danger btn-admin delete-dream">
                                                     <i class="fas fa-trash-alt"></i> حذف
                                                 </a>
                                             </div>
