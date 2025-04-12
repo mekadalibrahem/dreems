@@ -117,7 +117,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                                         <i class="fas fa-magic"></i> تحقيق
                                                     </button>
                                                 </form>
-                                                <form action="/admin/dream/delete" method="POST">
+                                                <form action="/admin/dream/accept" method="POST">
                                                     <input type="hidden" name="id" value="<?php echo $dream->id; ?>">
                                                     <button type="submit" class="btn btn-sm btn-danger btn-admin delete-dream">
                                                         <i class="fas fa-trash-alt"></i> حذف

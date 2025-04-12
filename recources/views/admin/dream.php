@@ -28,8 +28,8 @@ include_once(Helper::views_path() . '/layouts/header.php');
                         <p><?php ec($randomDream->description); ?></p>
 
                         <?php if (!empty($randomDream->image_path)): ?>
-                         
-                           
+
+
                             <div class="mt-3">
                                 <img
                                     alt="صورة الحلم"
@@ -47,12 +47,14 @@ include_once(Helper::views_path() . '/layouts/header.php');
                     <i class="fas fa-arrow-right me-1"></i> العودة واختيار حلم آخر
                 </a>
 
-                <form action="/admin/dream/delete" method="GET">
+
+                <form action="/admin/dream/accept" method="POST">
                     <input type="hidden" name="id" value="<?php echo $randomDream->id; ?>">
                     <button type="submit" class="btn btn-fulfill confirm-fulfill">
                         <i class="fas fa-magic me-1"></i> تحقيق هذا الحلم
                     </button>
                 </form>
+
             </div>
         </div>
     </div>
