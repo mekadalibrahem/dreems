@@ -9,15 +9,8 @@ $fulfilledDreams = Dream::query()->status(DreamStatus::Approved->value)->get();
 use App\Core\Helper\Helper;
 ?>
 
-<<<<<<< HEAD
-
-<!-- //TODO : FIX MOVING TICKER JS CODE IN METHOD (setupNewTicker) -->
-Fulfilled Dreams Ticker - New Simpler Version
-<?php if (count($fulfilledDreams) > 0): ?>
-=======
     <!-- //TODO : FIX MOVING TICKER JS CODE IN METHOD (setupNewTicker) -->
     <?php if (count($fulfilledDreams) > 0): ?>
->>>>>>> 1f13b8a44727a23c3f0cff5ba563a197fd1a37a6
     <div id="news-ticker" class="ticker-wrap">
         <div class="ticker-heading">
             <i class="fas fa-check-circle me-1"></i> أحلام تحققت
@@ -48,19 +41,8 @@ Fulfilled Dreams Ticker - New Simpler Version
     </div>
 </footer>
 
-<<<<<<< HEAD
-<!-- Bootstrap JS Bundle with Popper -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
-
-<!-- jQuery -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-<!-- Custom JS -->
-<script src="/js/app.js"></script>
-=======
    
     <script src="/js/app.js"></script>
->>>>>>> 1f13b8a44727a23c3f0cff5ba563a197fd1a37a6
 </body>
 
 </html>
