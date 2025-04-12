@@ -32,7 +32,7 @@ class  View
     {
         try {
             $view = new self($view_name ,$data);
-            return $view->render();
+            return $view->render($data);
         } catch (\Throwable $th) {
             throw new Exception("ERROR Creating VIEW {$view_name}  message : " . $th->getMessage());
         }
