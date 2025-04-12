@@ -9,18 +9,16 @@ use App\Models\User;
 class Auth
 {
 
-    private static ?User $user = null;
-
-
-
-    public static function check()
-    {
-        return self::$user !== null;
-    }
 
     public static function user()
     {
-        return self::$user;
+        $user_id = Session::get(config('auth.auth_session_key', 'user_id'));
+        if ($user_id) {
+            $user = User::find($user_id);
+            return $user;
+        } else {
+            return null;
+        }
     }
 
     public static function login(array $credentials)
@@ -31,7 +29,8 @@ class Auth
         // cardinat [key=> value , password => password_value]
         $user = User::where($credentials)->first();
         if ($user && Hash::verify($password, $user->password)) {
-            Session::put(config('session.auth_session_key', 'user_id'),  $user->id);
+            Session::put(config('auth.auth_session_key', 'user_id'),  $user->id);
+
             return true;
         } else {
             return false;
@@ -40,8 +39,8 @@ class Auth
 
     public static function logout()
     {
-        self::$user = null;
-        Session::remove(config('session.auth_session_key'));
+
+        Session::remove(config('auth.auth_session_key'));
         Session::destroy();
     }
 }
