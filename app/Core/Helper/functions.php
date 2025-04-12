@@ -92,8 +92,15 @@ function flash_has($key)
     return !empty($GLOBALS['_flash'][$key]);
 }
 
-function redirect($path)
+function redirect($path, $data = [])
 {
+    // Append data as query strings if provided
+    if (!empty($data)) {
+        $query = http_build_query($data);
+        $path .= (strpos($path, '?') === false ? '?' : '&') . $query;
+    }
+    
+    // Perform redirect
     header('Location: ' . $path);
     exit;
 }

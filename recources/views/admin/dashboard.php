@@ -1,7 +1,6 @@
 <?php
 
 use App\Core\Helper\Helper;
-use App\Models\Dream;
 
 include_once(Helper::views_path() . '/layouts/header.php');
 
@@ -33,18 +32,24 @@ include_once(Helper::views_path() . '/layouts/header.php');
                     <h5 class="mb-0">اختيار حلم عشوائي للتحقيق</h5>
                 </div>
                 <div class="card-body">
-                    <form id="randomCriteriaForm" method="post" action="fulfill_dream.php">
+                    <form id="randomCriteriaForm" method="post" action="/admin/fulfill_dream">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="mb-3">
                                     <label for="minAmount" class="form-label">الحد الأدنى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control" id="minAmount" name="minAmount" min="0">
+                                    <input type="number" class="form-control <?php echo has_error('minAmount') ? 'is-invalid' : ''; ?> " id="minAmount" name="minAmount" min="0" value="<?php ec(old('minAmount')); ?>">
+                                    <?php if (has_error('minAmount')): ?>
+                                        <div class="invalid-feedback"><?php ec(error('minAmount')); ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="mb-3">
                                     <label for="maxAmount" class="form-label">الحد الأقصى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control" id="maxAmount" name="maxAmount" min="1">
+                                    <input type="number" class="form-control  <?php echo has_error('maxAmount') ? 'is-invalid' : ''; ?> " id="maxAmount" name="maxAmount" min="1" value="<?php ec(old('maxAmount')); ?>">
+                                    <?php if (has_error('maxAmount')): ?>
+                                        <div class="invalid-feedback"><?php ec(error('maxAmount')); ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
@@ -74,6 +79,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 <p class="text-center">لا توجد أحلام للعرض.</p>
             <?php else: ?>
                 <div class="table-responsive">
+                    
                     <table class="table table-striped admin-table">
                         <thead>
                             <tr>
@@ -88,24 +94,24 @@ include_once(Helper::views_path() . '/layouts/header.php');
                         <tbody>
                             <?php foreach ($dreams as $index => $dream): ?>
                                 <tr>
-                                    <td><?php echo (($page - 1) * 10) + $index + 1; ?></td>
-                                    <td><?php echo htmlspecialchars($dream['full_name']); ?></td>
-                                    <td><?php echo truncateText(htmlspecialchars($dream['description']), 50); ?></td>
-                                    <td><?php echo formatAmount($dream['amount']); ?> ل.س</td>
+                                    <td><?php echo  $index + 1; ?></td>
+                                    <td><?php ec($dream->full_name); ?></td>
+                                    <td> <?php ec($dream->description); ?> </td>
+                                    <td><?php ec($dream->amount); ?> ل.س</td>
                                     <td>
-                                        <?php if ($dream['status'] === 'fulfilled'): ?>
+                                        <?php if ($dream->status === 'fulfilled'): ?>
                                             <span class="badge bg-success">تم التحقيق</span>
                                         <?php else: ?>
                                             <span class="badge bg-warning text-dark">معلق</span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?php if ($dream['status'] === 'pending'): ?>
+                                        <?php if ($dream->status === 'pending'): ?>
                                             <div class="btn-group">
-                                                <a href="fulfill_dream.php?id=<?php echo $dream['id']; ?>" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
+                                                <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
                                                     <i class="fas fa-magic"></i> تحقيق
                                                 </a>
-                                                <a href="delete_dream.php?id=<?php echo $dream['id']; ?>" class="btn btn-sm btn-danger btn-admin delete-dream">
+                                                <a href="delete_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-danger btn-admin delete-dream">
                                                     <i class="fas fa-trash-alt"></i> حذف
                                                 </a>
                                             </div>
@@ -119,10 +125,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                     </table>
                 </div>
 
-                <!-- Pagination -->
-                <div class="mt-3">
-                    <?php echo generatePagination($page, $totalPages, 'index.php?page='); ?>
-                </div>
+
             <?php endif; ?>
         </div>
     </div>
