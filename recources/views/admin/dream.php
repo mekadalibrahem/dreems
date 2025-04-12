@@ -43,11 +43,11 @@ include_once(Helper::views_path() . '/layouts/header.php');
             </div>
 
             <div class="d-flex justify-content-between">
-                <a href="index.php" class="btn btn-secondary">
+                <a href="/admin/dashboard" class="btn btn-secondary">
                     <i class="fas fa-arrow-right me-1"></i> العودة واختيار حلم آخر
                 </a>
 
-                <form action="fulfill_dream.php" method="GET">
+                <form action="/admin/dream/delete" method="GET">
                     <input type="hidden" name="id" value="<?php echo $randomDream->id; ?>">
                     <button type="submit" class="btn btn-fulfill confirm-fulfill">
                         <i class="fas fa-magic me-1"></i> تحقيق هذا الحلم

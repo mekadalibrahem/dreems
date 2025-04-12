@@ -39,5 +39,6 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::post('login', [LoginController::class, 'store']);
     Route::get('dashboard', [DashboardController::class, 'create']);
     Route::post('fulfill_dream', [DashboardController::class, 'fulfill_dream']);
-    Route::get('random' , [DashboardController::class , 'random_dream']);
+    Route::get('random', [DashboardController::class, 'random_dream']);
+    Route::post('dream/delete', [DashboardController::class, 'delete_dream']);
 });

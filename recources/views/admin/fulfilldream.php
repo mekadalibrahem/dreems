@@ -16,7 +16,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
             <div class="mb-4">
                 <h6>شروط البحث:</h6>
                 <p>الحد الأدنى للمبلغ: <?php ec($minAmount); ?> ل.س | الحد الأعلى للمبلغ: <?php ec($maxAmount); ?> ل.س</p>
-                <a href="index.php" class="btn btn-secondary"><i class="fas fa-arrow-right me-1"></i> عودة للوحة التحكم</a>
+                <a href="/admin/dashboard" class="btn btn-secondary"><i class="fas fa-arrow-right me-1"></i> عودة للوحة التحكم</a>
             </div>
 
             <?php if (empty($matchingDreams)): ?>

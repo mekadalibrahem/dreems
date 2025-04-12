@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Core\Controllers\Controller;
+use App\Core\Helper\Session;
 use App\Core\Helper\Validator;
 use App\Models\Dream;
 
@@ -12,7 +13,7 @@ class DashboardController extends Controller
     public function create()
     {
         $this->authed();
-        $dreams = Dream::all();
+        $dreams = Dream::query()->deleted()->get();
         return view('admin/dashboard', [
             'dreams' => $dreams
         ]);
@@ -28,10 +29,7 @@ class DashboardController extends Controller
         $matchingDreams = Dream::query()->amount($minAmount, $maxAmount)
             ->get();
         if (isset($_REQUEST['select_random'])) {
-            redirect('/admin/random' , $_REQUEST);
-            // return view('admin/dream', [
-            //     'randomDream' => $matchingDreams->random()
-            // ]);
+            redirect('/admin/random', $_REQUEST);
         } else {
 
             $data = [
@@ -56,5 +54,27 @@ class DashboardController extends Controller
             "minAmount" => $minAmount,
             "maxAmount" => $maxAmount,
         ]);
+    }
+
+
+    public function delete_dream()
+    {
+        $this->authed();
+        $id = (int) $_REQUEST['id'];
+        if (isset($id) && $id > 0) {
+            $dream = Dream::find($id);
+            if ($dream) {
+                if ($dream->softDelete()) {
+                    Session::put('dream-deleted', 'تم حذف الحلم');
+                } else {
+                    Session::error('delete-dream-error', 'لم يتم حذف الحلم');
+                }
+            } else {
+                Session::error('delete-dream-error', 'اختيار غير صحيح');
+            }
+        } else {
+            Session::error('delete-dream-error', 'لم يتم حذف الحلم');
+        }
+        redirect(back());
     }
 }

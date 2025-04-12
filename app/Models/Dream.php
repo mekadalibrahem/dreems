@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\SoftDeleted;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Dream extends Model
 {
+    use SoftDeleted;
     protected $fillable = [
         'id',
         'full_name',

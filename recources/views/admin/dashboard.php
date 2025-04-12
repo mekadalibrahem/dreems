@@ -79,7 +79,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 <p class="text-center">لا توجد أحلام للعرض.</p>
             <?php else: ?>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-striped admin-table">
                         <thead>
                             <tr>
@@ -111,9 +111,12 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                                 <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
                                                     <i class="fas fa-magic"></i> تحقيق
                                                 </a>
-                                                <a href="delete_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-danger btn-admin delete-dream">
-                                                    <i class="fas fa-trash-alt"></i> حذف
-                                                </a>
+                                                <form action="/admin/dream/delete" method="POST">
+                                                    <input type="hidden" name="id" value="<?php echo $dream->id; ?>">
+                                                    <button type="submit" class="btn btn-sm btn-danger btn-admin delete-dream">
+                                                        <i class="fas fa-trash-alt"></i> حذف
+                                                    </button>
+                                                </form>
                                             </div>
                                         <?php else: ?>
                                             <span class="text-muted small">تم تحقيقه</span>
