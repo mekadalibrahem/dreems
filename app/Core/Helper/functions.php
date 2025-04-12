@@ -38,9 +38,9 @@ function config($key, $default = null)
     return Helper::config($key, $default);
 }
 
-function view($view , $data = [])
+function view($view, $data = [])
 {
-    return View::view($view , $data);
+    return View::view($view, $data);
 }
 
 function abort($code = 404)
@@ -99,7 +99,7 @@ function redirect($path, $data = [])
         $query = http_build_query($data);
         $path .= (strpos($path, '?') === false ? '?' : '&') . $query;
     }
-    
+
     // Perform redirect
     header('Location: ' . $path);
     exit;
@@ -107,4 +107,10 @@ function redirect($path, $data = [])
 function back()
 {
     return  $_SERVER['HTTP_REFERER'] ?? '/';
+}
+
+
+function is_url($url)
+{
+    return (bool) ($_SERVER['REQUEST_URI'] == $url);
 }
