@@ -77,4 +77,24 @@ class DreamController extends Controller
         }
         redirect(back());
     }
+    public function delete_dream()
+    {
+        $this->authed();
+        $id = (int) $_REQUEST['id'];
+        if (isset($id) && $id > 0) {
+            $dream = Dream::find($id);
+            if ($dream) {
+                if ($dream->softDelete()) {
+                    Session::put('dream-deleted', 'تم حذف الحلم');
+                } else {
+                    Session::error('delete-dream-error', 'لم يتم حذف الحلم');
+                }
+            } else {
+                Session::error('delete-dream-error', 'اختيار غير صحيح');
+            }
+        } else {
+            Session::error('delete-dream-error', 'لم يتم حذف الحلم');
+        }
+        redirect(back());
+    }
 }
