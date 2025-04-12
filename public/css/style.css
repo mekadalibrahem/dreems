@@ -164,7 +164,7 @@ body {
     justify-content: center;
     background-color: var(--accent-color);
     color: var(--text-dark);
-    padding: 0 1rem;
+    
     font-weight: 600;
     height: 100%;
     float: right;
