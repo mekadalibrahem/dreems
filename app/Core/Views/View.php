@@ -28,10 +28,10 @@ class  View
         }
     }
 
-    public static function view($view_name)
+    public static function view($view_name , $data = [])
     {
         try {
-            $view = new self($view_name);
+            $view = new self($view_name , compact($data));
             return $view->render();
         } catch (\Throwable $th) {
             throw new Exception("ERROR Creating VIEW {$view_name}  message : " . $th->getMessage());

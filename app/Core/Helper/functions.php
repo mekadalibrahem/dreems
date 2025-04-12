@@ -38,9 +38,9 @@ function config($key, $default = null)
     return Helper::config($key, $default);
 }
 
-function view($view)
+function view($view , $data = [])
 {
-    return View::view($view);
+    return View::view($view , $data);
 }
 
 function abort($code = 404)
