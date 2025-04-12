@@ -9,6 +9,7 @@
 // require_once $basePath . 'functions.php';
 // 
 
+use App\Core\Authentication\Auth;
 use App\Core\Helper\Helper;
 use App\Core\Helper\Session;
 
@@ -49,14 +50,14 @@ use App\Core\Helper\Session;
                         <a class="nav-link active" aria-current="page" href="/">الرئيسية</a>
                     </li>
                     
-                    <?php if(Session::get('admin_login')): ?>
-                        <!-- TODO : implement admin panel -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') === false) ? 'admin/' : ''; ?>index.php">لوحة التحكم</a>
+                    <?php if(Auth::user() != null): ?>
+                        
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php ec ('/admin/dashboard'); ?>" >لوحة التحكم</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo (strpos($_SERVER['REQUEST_URI'], 'admin/') !== false) ? '../' : ''; ?>process/login.php?logout=1">تسجيل الخروج</a>
-                    </li> -->
+                        <a class="nav-link" href="<?php ec ('/admin/logout'); ?>">تسجيل الخروج</a>
+                    </li>
                     <?php endif; ?>
                 </ul>
                 <div class="d-flex">

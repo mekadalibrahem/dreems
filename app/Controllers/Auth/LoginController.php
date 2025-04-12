@@ -26,14 +26,17 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        if(Auth::login($request_data)){
+        if (Auth::login($request_data)) {
             redirect('/admin/dashboard');
-        }else{
-            Session::error('invlaid_credentials' , "اسم المستخدم او كلمة المرور غير صحيحة");
+        } else {
+            Session::error('invlaid_credentials', "اسم المستخدم او كلمة المرور غير صحيحة");
             redirect(back());
         }
+    }
 
-
-        
+    public function destroy()
+    {
+        Auth::logout();
+        redirect('/');
     }
 }
