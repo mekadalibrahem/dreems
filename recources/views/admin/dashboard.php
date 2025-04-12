@@ -35,35 +35,6 @@ include_once(Helper::views_path() . '/layouts/header.php');
                 </div>
                 <div class="card-body">
                     <form id="randomCriteriaForm" method="post" action="/admin/fulfill_dream">
-<<<<<<< HEAD
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label for="minAmount" class="form-label">الحد الأدنى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control <?php echo has_error('minAmount') ? 'is-invalid' : ''; ?> " id="minAmount" name="minAmount" min="0" value="<?php ec(old('minAmount')); ?>">
-                                    <?php if (has_error('minAmount')): ?>
-                                        <div class="invalid-feedback"><?php ec(error('minAmount')); ?></div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label for="maxAmount" class="form-label">الحد الأقصى للمبلغ (ل.س)</label>
-                                    <input type="number" class="form-control  <?php echo has_error('maxAmount') ? 'is-invalid' : ''; ?> " id="maxAmount" name="maxAmount" min="1" value="<?php ec(old('maxAmount')); ?>">
-                                    <?php if (has_error('maxAmount')): ?>
-                                        <div class="invalid-feedback"><?php ec(error('maxAmount')); ?></div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="col-md-3 d-flex align-items-end">
-                                <div class="mb-3 w-100 d-flex">
-                                    <button type="submit" name="select_random" class="btn btn-fulfill me-1">
-                                        <i class="fas fa-magic me-1"></i> اختيار عشوائي
-                                    </button>
-                                    <button type="submit" name="view_dreams" class="btn btn-secondary">
-                                        <i class="fas fa-list me-1"></i> عرض المطابق
-                                    </button>
-=======
                         <div class="d-flex justify-content-center align-items-center ">
                             <div class="row w-75">
                                 <div class="col-md-6 offset-md-3">
@@ -93,7 +64,6 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                             </div>
                                         </div>
                                     </div>
->>>>>>> 1f13b8a44727a23c3f0cff5ba563a197fd1a37a6
                                 </div>
                             </div>
                         </div>
@@ -130,11 +100,11 @@ include_once(Helper::views_path() . '/layouts/header.php');
             <?php else: ?>
                 <div class="table-responsive">
 
-<<<<<<< HEAD
+
                     <table class="table table-striped admin-table">
-=======
+
                     <table class="table  admin-table">
->>>>>>> 1f13b8a44727a23c3f0cff5ba563a197fd1a37a6
+
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -162,7 +132,6 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                     <td>
                                         <?php if ($dream->status === DreamStatus::Pending->value): ?>
                                             <div class="btn-group">
-<<<<<<< HEAD
                                               
                                                 <form action="/admin/dream/accept" method="POST">
                                                     <input type="hidden" name="id" value="<?php echo $dream->id; ?>">
@@ -176,16 +145,6 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                                         <i class="fas fa-trash-alt"></i> حذف
                                                     </button>
                                                 </form>
-=======
-                                                <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>"
-                                                    class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
-                                                    <i class="fas fa-magic"></i> تحقيق
-                                                </a>
-                                                <a href="delete_dream.php?id=<?php echo $dream->id; ?>"
-                                                    class="btn btn-sm btn-danger btn-admin delete-dream">
-                                                    <i class="fas fa-trash-alt"></i> حذف
-                                                </a>
->>>>>>> 1f13b8a44727a23c3f0cff5ba563a197fd1a37a6
                                             </div>
                                         <?php else: ?>
                                             <span class="text-muted small">تم تحقيقه</span>
