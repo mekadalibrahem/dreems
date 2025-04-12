@@ -1,6 +1,8 @@
 <?php
 
 use App\Core\Helper\Helper;
+use App\Enums\DreamStatus;
+use App\Models\Dream;
 
 include_once(Helper::views_path() . '/layouts/header.php');
 
@@ -52,7 +54,7 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="col-md-2 d-flex align-items-end">
+                            <div class="col-md-3 d-flex align-items-end">
                                 <div class="mb-3 w-100 d-flex">
                                     <button type="submit" name="select_random" class="btn btn-fulfill me-1">
                                         <i class="fas fa-magic me-1"></i> اختيار عشوائي
@@ -99,18 +101,22 @@ include_once(Helper::views_path() . '/layouts/header.php');
                                     <td> <?php ec($dream->description); ?> </td>
                                     <td><?php ec($dream->amount); ?> ل.س</td>
                                     <td>
-                                        <?php if ($dream->status === 'fulfilled'): ?>
+                                        <?php if ($dream->status === DreamStatus::Approved->value): ?>
                                             <span class="badge bg-success">تم التحقيق</span>
                                         <?php else: ?>
                                             <span class="badge bg-warning text-dark">معلق</span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?php if ($dream->status === 'pending'): ?>
+                                        <?php if ($dream->status === DreamStatus::Pending->value): ?>
                                             <div class="btn-group">
-                                                <a href="fulfill_dream.php?id=<?php echo $dream->id; ?>" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
-                                                    <i class="fas fa-magic"></i> تحقيق
-                                                </a>
+                                              
+                                                <form action="/admin/dream/accept" method="POST">
+                                                    <input type="hidden" name="id" value="<?php echo $dream->id; ?>">
+                                                    <button type="submit" class="btn btn-sm btn-fulfill btn-admin confirm-fulfill me-1">
+                                                        <i class="fas fa-magic"></i> تحقيق
+                                                    </button>
+                                                </form>
                                                 <form action="/admin/dream/delete" method="POST">
                                                     <input type="hidden" name="id" value="<?php echo $dream->id; ?>">
                                                     <button type="submit" class="btn btn-sm btn-danger btn-admin delete-dream">

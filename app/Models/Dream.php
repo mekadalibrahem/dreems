@@ -34,4 +34,11 @@ class Dream extends Model
             $query->where('amount', '<', $max);
         }
     }
+
+    public function scopeStatus(Builder $query, $status): void
+    {
+
+        
+        $query->where('status', '=', $status);
+    }
 }

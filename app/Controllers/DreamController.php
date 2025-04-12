@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\Controllers\Controller;
 use App\Core\Helper\Session;
 use App\Core\Helper\Validator;
+use App\Enums\DreamStatus;
 use App\Models\Dream;
 use App\Traits\FileUploadTrait;
 
@@ -53,5 +54,27 @@ class DreamController extends Controller
             // redirect to error page
             redirect('/dream/create');
         }
+    }
+
+    public function accept()
+    {
+        $this->authed();
+        $id = (int) $_REQUEST['id'];
+        if (isset($id) && $id > 0) {
+            $dream = Dream::find($id);
+            if ($dream) {
+                $dream->status = DreamStatus::Approved->value;
+                if ($dream->save()) {
+                    Session::put('dream-updated', 'تم تعديل الحلم');
+                } else {
+                    Session::error('updated-dream-error', 'لم يتم تعديل الحلم');
+                }
+            } else {
+                Session::error('updated-dream-error', 'اختيار غير صحيح');
+            }
+        } else {
+            Session::error('updated-dream-error', 'لم يتم تعديل الحلم');
+        }
+        redirect(back());
     }
 }
