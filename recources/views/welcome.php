@@ -4,7 +4,7 @@ use App\Core\Helper\Helper;
 use App\Models\Dream;
 
 include_once(Helper::views_path() . '/layouts/header.php');
-$dreams = Dream::all();
+$dreams = Dream::orderBy('created_at', 'desc')->get();
 ?>
 <div class="container">
     <h2 class="mb-4 text-center">جميع الأحلام</h2>
